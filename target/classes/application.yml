@@ -1,5 +1,13 @@
 server:
   port: 8081
+  httpPort: 8082
+  ssl:
+      key-store: server.keystore
+#         key-alias: jmask
+      enabled: true
+      key-store-password: Ikarosu
+#         key-store-password: Ikarosu
+      key-store-type: JKS
   mvc:
     view:
       prefix: /
