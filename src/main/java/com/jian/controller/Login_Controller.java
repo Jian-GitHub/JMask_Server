@@ -1,6 +1,5 @@
 package com.jian.controller;
 
-import com.jian.entity.Login;
 import com.jian.entity.User;
 import com.jian.mapper.Login_Mapper;
 import com.jian.mapper.User_Mapper;
@@ -23,9 +22,9 @@ public class Login_Controller {
     User_Mapper user_mapper;
 
     /**
-     * 传入用户名，寻得并以Base64编码返回该用户密码
+     * 传入用户名，寻得并以Base64编码返回该用户信息
      * @param userName 用户名
-     * @return String Base64编码后的用户密码，若发生异常则返回空字符串。
+     * @return String Base64编码后的用户信息，若发生异常则返回空字符串。
      */
     @RequestMapping(
             method = {RequestMethod.POST},

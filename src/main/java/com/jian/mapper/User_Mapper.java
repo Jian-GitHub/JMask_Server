@@ -34,7 +34,7 @@ public interface User_Mapper {
     /**
      * 根据用户名查找用户
      * @param userName 用户名
-     * @return 用户数量
+     * @return 用户信息
      */
     @Select("select * from user where BINARY userName = #{userName}")
     User selectUserByName(String userName);
@@ -42,7 +42,7 @@ public interface User_Mapper {
     /**
      * 根据用户ID查找用户
      * @param ID 用户ID
-     * @return 用户
+     * @return 用户信息
      */
     @Select("select id,userName,createDate,lastDate,isOnLine,isAvatar from user where BINARY id = #{ID}")
     User selectUserByID(int ID);

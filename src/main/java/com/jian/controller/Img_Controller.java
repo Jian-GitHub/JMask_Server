@@ -4,12 +4,12 @@ import com.jian.untils.Base64Util;
 import com.jian.untils.HttpClientUtil;
 import com.jian.untils.ImgUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.Objects;
 
 /**
  * @author Jian Qi
@@ -22,11 +22,11 @@ import java.io.*;
 @RequestMapping("JMask/DealData")
 public class Img_Controller {
     /**
-     * @param userName
-     * @param imgData
-     * @param imgType
-     * @return
-     * @throws UnsupportedEncodingException
+     * @param userName 用户名
+     * @param imgData 图片数据
+     * @param imgType 图片类型(文件后缀)
+     * @return 返回处理后的图片Base64编码数据
+     * @throws UnsupportedEncodingException 抛出处理过程中的异常
      */
     @RequestMapping(
 //            method = {RequestMethod.POST},
@@ -38,50 +38,44 @@ public class Img_Controller {
         imgData = Base64Util.decode(imgData);
         File file = new File(imgDir);
         if (!file.exists()) {
-            file.mkdirs();
+            if(!file.mkdirs()){
+                return null;
+            }
         }
 
         String imgName = String.valueOf(System.currentTimeMillis() / 1000);
         imgDir += "/" + imgName + "." + imgType;
 
         ImgUtil.GenerateImage(imgData, imgDir);
-//        System.out.println(imgDir);
 
 //      将图片路径传至Python内处理，接收处理后的数据。
         String url = "http://127.0.0.1:9000/Mask?mode=img&imgdir=" + Base64Util.encode(imgDir);
-        String imageData = HttpClientUtil.doPost(url);
-
-
-//        String fname = "/Users/qi/Downloads/images-javafx.jpg";
-//        int pos = fname.lastIndexOf('/');
-//        if (pos > -1)
-//            fname.substring(0, pos);
-////        System.out.println(fname.substring(0, pos));
-//        System.out.println(fname.substring(pos));
-        return imageData;
+        return HttpClientUtil.doPost(url);
     }
 
     /**
-     * @param file
-     * @return
+     * @param file 网页传入的文件(图片)
+     * @return 返回处理后的图片Base64编码数据
      */
     @RequestMapping(
 //            method = {RequestMethod.POST},
             value = "/dealImgWeb"
     )
-    public String dealImgWeb(@RequestParam("file") MultipartFile file) throws IOException {
+    public String dealImgWeb(@RequestParam("file") MultipartFile file) {
         String fileName = file.getOriginalFilename();
-        int index = file.getOriginalFilename().indexOf(".");
-        String suffixName = fileName.substring(index, fileName.length());
+        int index = Objects.requireNonNull(file.getOriginalFilename()).indexOf(".");
+        String suffixName = Objects.requireNonNull(fileName).substring(index, fileName.length());
 
         File directory = new File("");
         String imgName = String.valueOf(System.currentTimeMillis() / 1000);
         String imgDir = directory.getAbsolutePath() + "/AppData/" + "Web/";
-        String fileURL = null;
+        String fileURL;
         File targetFile = new File(imgDir);
         String imageData = null;
         if (!targetFile.exists()) {
-            targetFile.mkdirs();
+            if(!targetFile.mkdirs()){
+                return null;
+            }
         }
         FileOutputStream out = null;
         try {
@@ -93,8 +87,6 @@ public class Img_Controller {
             String url = "http://127.0.0.1:5000/Mask?mode=img&imgdir=" + Base64Util.encode(fileURL);
             imageData = HttpClientUtil.doPost(url);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
