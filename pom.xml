@@ -40,15 +40,17 @@
             <artifactId>httpclient</artifactId>
 <!--            <version>4.5.12</version> -->
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
-            <version>1.7.0</version>
+            <version>1.8.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
-            <version>3.4.0</version>
+            <version>3.18.2</version>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -99,19 +101,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
-        <!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.27</version>
         </dependency>
-        <!--    <dependency>-->
-        <!--      <groupId>com.alibaba</groupId>-->
-        <!--      <artifactId>druid</artifactId>-->
-        <!--      <version>1.1.24</version>-->
-        <!--    </dependency>-->
+
+
 
         <dependency>
             <groupId>org.projectlombok</groupId>

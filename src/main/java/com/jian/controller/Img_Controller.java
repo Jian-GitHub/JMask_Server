@@ -34,7 +34,7 @@ public class Img_Controller {
     )
     public String dealImgClient(@RequestParam("userName") String userName, @RequestParam("imgData") String imgData, @RequestParam("imgType") String imgType) throws UnsupportedEncodingException {
         File directory = new File("");
-        String imgDir = directory.getAbsolutePath() + "/.AppData/" + userName;
+        String imgDir = directory.getAbsolutePath() + "/AppData/" + userName;
         imgData = Base64Util.decode(imgData);
         File file = new File(imgDir);
         if (!file.exists()) {
@@ -49,7 +49,7 @@ public class Img_Controller {
         ImgUtil.GenerateImage(imgData, imgDir);
 
 //      将图片路径传至Python内处理，接收处理后的数据。
-        String url = "http://127.0.0.1:9000/Mask?mode=img&imgdir=" + Base64Util.encode(imgDir);
+        String url = "http://127.0.0.1:5000/Mask?mode=img&imgdir=" + Base64Util.encode(imgDir);
         return HttpClientUtil.doPost(url);
     }
 
