@@ -20,7 +20,7 @@ public class User_Controller {
     @RequestMapping("select")
     public List<User> selectUsers() {
 //        System.out.println(userMapper.select());
-        return userMapper.select();
+        return userMapper.selectAllUsers();
     }
 
     @RequestMapping("selectByUserID")
@@ -34,6 +34,12 @@ public class User_Controller {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @RequestMapping("selectByUserName")
+    public User selectByUserName(String name) {
+//        System.out.println(userMapper.select());
+        return userMapper.selectUserByName(name);
     }
 }
 

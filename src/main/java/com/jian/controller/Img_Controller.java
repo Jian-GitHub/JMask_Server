@@ -111,16 +111,27 @@ public class Img_Controller {
             value = "/dealImgWeb"
     )
     public String dealImgWeb(@RequestParam("file") MultipartFile file) {
+        String imageData = "";
         String fileName = file.getOriginalFilename();
         int index = Objects.requireNonNull(file.getOriginalFilename()).indexOf(".");
+        if("".equals(fileName) || fileName == null || index <= 0){
+            return imageData;
+        }
         String suffixName = Objects.requireNonNull(fileName).substring(index, fileName.length());
+        if(
+                !".jpg".equalsIgnoreCase(suffixName) &&
+                !".jpeg".equalsIgnoreCase(suffixName) &&
+                !".png".equalsIgnoreCase(suffixName)
+        ){//不为图片类型则返回空字符串
+            return "";
+        }
+        suffixName = ".jpg";
 
         File directory = new File("");
         String imgName = System.currentTimeMillis() / 1000 + Objects.requireNonNull(fileName).substring(0, index);
         String imgDir = directory.getAbsolutePath() + "/AppData/" + "Web/";
         String fileURL;
         File targetFile = new File(imgDir);
-        String imageData = null;
         if (!targetFile.exists()) {
             if (!targetFile.mkdirs()) {
                 return null;
@@ -137,7 +148,8 @@ public class Img_Controller {
             hashMap.put("imgData", imgData);
             //向服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
             imageData = HttpClientUtil.doPost("http://127.0.0.1:5000/Mask", hashMap);
-            if ("".equals(imageData) || imageData == null) {
+            //无法正确处理则返回空字符串
+            if (imageData == null) {
                 return "";
             }
         } catch (IOException e) {

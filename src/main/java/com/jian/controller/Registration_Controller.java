@@ -1,5 +1,6 @@
 package com.jian.controller;
 
+import com.jian.entity.Result;
 import com.jian.mapper.User_Mapper;
 import com.jian.untils.Base64Util;
 import com.jian.untils.Uuid;
@@ -25,7 +26,7 @@ public class Registration_Controller {
     User_Mapper userMapper;
 
     @RequestMapping(method = {RequestMethod.POST}, value = "registration")
-    public boolean registration(
+    public Result registration(
             @RequestParam("userName") String userName,
             @RequestParam("password") String password,
             @RequestParam("time") String time
@@ -35,17 +36,24 @@ public class Registration_Controller {
 //        System.out.println(Base64Util.decode(userName));
 //        System.out.println(Base64Util.decode(password));
 //        System.out.println(createTime);
-        return userMapper.insertUser(
+        if (userMapper.insertUser(
                 Uuid.getUUID(),
                 Base64Util.decode(userName),
                 password,
                 createTime
-        );
+        )){
+            return Result.getSuccess();
+        }else {
+            return Result.getFail();
+        }
     }
 
     @RequestMapping(method = {RequestMethod.POST}, value = "canUseUserName")
     public boolean canUseUserName(@RequestParam("userName") String userName) {
+        System.out.println(userName);
         String queryUserName = Base64Util.decode(userName);
-        return "".equals(queryUserName) ? false : userMapper.countUsersByName(queryUserName) == 0 ? true : false;
+        System.out.println();
+        boolean result = "".equals(queryUserName) ? false : userMapper.countUsersByName(queryUserName) == 0 ? true : false;
+        return result;
     }
 }

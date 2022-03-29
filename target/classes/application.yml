@@ -12,7 +12,7 @@ server:
     view:
       prefix: /
       suffix: .html
-  max-http-header-size: 1024000
+  max-http-header-size: 102400000
 
 spring:
   datasource:
@@ -20,3 +20,11 @@ spring:
     password: Ikarosu1
     url: jdbc:mysql://www.Jian-Internet.com:3306/JianMask?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 60000
+      connection-test-query: SELECT 1
+mybatis:
+  type-aliases-package: com.jian.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml

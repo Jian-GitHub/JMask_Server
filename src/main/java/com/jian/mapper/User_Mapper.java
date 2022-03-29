@@ -20,15 +20,15 @@ public interface User_Mapper {
      * 查询全部用户
      * @return 用户集合 List<User>
      */
-    @Select("select * from user")
-    List<User> select();
+//    @Select("select * from user")
+    List<User> selectAllUsers();
 
     /**
      * 根据用户名查找用户数量
      * @param userName 用户名
      * @return 用户数量
      */
-    @Select("select count(id) from user where BINARY userName = #{userName}")
+//    @Select("select count(id) from user where BINARY userName = #{userName}")
     int countUsersByName(String userName);
 
     /**
@@ -36,7 +36,7 @@ public interface User_Mapper {
      * @param userName 用户名
      * @return 用户信息
      */
-    @Select("select * from user where BINARY userName = #{userName}")
+//    @Select("select * from user where BINARY userName = #{userName}")
     User selectUserByName(String userName);
 
     /**
@@ -44,7 +44,7 @@ public interface User_Mapper {
      * @param ID 用户ID
      * @return 用户信息
      */
-    @Select("select id,userName,createDate,lastDate,isOnLine,isAvatar from user where BINARY id = #{ID}")
+//    @Select("select id,userName,createDate,lastDate,isOnLine,isAvatar from user where BINARY id = #{ID}")
     User selectUserByID(int ID);
 
     /**
@@ -54,7 +54,7 @@ public interface User_Mapper {
      * @param createDate 创建时间
      * @return 是否成功
      */
-    @Insert("INSERT INTO `user` (`id`, `userName`, `password`, `createDate`) " +
-            "VALUES (#{id}, #{userName}, #{password}, #{createDate});")
+//    @Insert("INSERT INTO `user` (`id`, `userName`, `password`, `createDate`) " +
+//            "VALUES (#{id}, #{userName}, #{password}, #{createDate});")
     boolean insertUser(String id, String userName,String password,String createDate);
 }

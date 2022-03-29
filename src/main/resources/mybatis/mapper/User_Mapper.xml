@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jian.mapper.User_Mapper">
+    <select id="selectAllUsers" resultType="user">
+        select * from user;
+    </select>
+
+    <select id="countUsersByName" resultType="int">
+        select count(id) from user where BINARY userName = #{userName};
+    </select>
+
+    <select id="selectUserByName" parameterType="String" resultType="user">
+        select * from user where BINARY userName = #{userName};
+    </select>
+
+    <select id="selectUserByID" parameterType="int" resultType="user">
+        select id,userName,createDate,lastDate,isOnLine,isAvatar from user where BINARY id = #{ID};
+    </select>
+
+    <insert id="insertUser" parameterType="user">
+        INSERT INTO `user` (`id`, `userName`, `password`, `createDate`) VALUES (#{id}, #{userName}, #{password}, #{createDate});
+    </insert>
+</mapper>

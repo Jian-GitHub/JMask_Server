@@ -16,4 +16,5 @@ public class User {
     private String lastDate;//最后登录时间
     private boolean isOnLine;//是否在线
     private boolean isAvatar;//是否有头像
+    private String role;//用户角色
 }
