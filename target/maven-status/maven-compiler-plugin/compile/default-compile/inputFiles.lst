@@ -1,5 +1,6 @@
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/untils/JsonUtils.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/mapper/Login_Mapper.java
+/Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/entity/Avatar.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/untils/ImgUtil.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/untils/Base64Util.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/mapper/User_Mapper.java
@@ -13,6 +14,7 @@
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/controller/Login_Controller.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/Application.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/controller/User_Controller.java
+/Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/mapper/Avatar_Mapper.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/controller/Registration_Controller.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/controller/Token_Controller.java
 /Users/qi/IdeaProjects/JMask_Server/src/main/java/com/jian/entity/User.java

@@ -7,6 +7,7 @@ package com.jian.mapper;
 import com.jian.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -45,7 +46,7 @@ public interface User_Mapper {
      * @return 用户信息
      */
 //    @Select("select id,userName,createDate,lastDate,isOnLine,isAvatar from user where BINARY id = #{ID}")
-    User selectUserByID(int ID);
+    User selectUserByID(String ID);
 
     /**
      * 插入用户信息
@@ -57,4 +58,43 @@ public interface User_Mapper {
 //    @Insert("INSERT INTO `user` (`id`, `userName`, `password`, `createDate`) " +
 //            "VALUES (#{id}, #{userName}, #{password}, #{createDate});")
     boolean insertUser(String id, String userName,String password,String createDate);
+
+    /**
+     *
+     * @param id 要修改用户名的用户ID
+     * @param newUserName 要修改为的用户名
+     * @return 是否成功
+     */
+    boolean updateUserName(@Param("id") String id, @Param("newUserName")  String newUserName);
+
+    /**
+     *
+     * @param id 要修改用户名的用户ID
+     * @param newPassWord 要修改为的用户名
+     * @return 是否成功
+     */
+    boolean updatePassWord(@Param("id") String id, @Param("newPassWord")  String newPassWord);
+
+    /**
+     *
+     * @param id 要注销的用户ID
+     * @return 是否成功
+     */
+    boolean removeAccount(@Param("id") String id);
+
+    /**
+     *
+     * @param id 上传的用户ID
+     * @param avatarURL 上传的用户头像的URL
+     * @return 是否成功
+     */
+    boolean uploadAvatar(@Param("id") String id,@Param("avatarURL")  String avatarURL);
+
+    /**
+     *
+     * @param id 用户ID
+     * @param hasAvatar 是否存在头像
+     * @return
+     */
+    boolean updateHasAvatar(@Param("id") String id,@Param("hasAvatar")  boolean hasAvatar);
 }

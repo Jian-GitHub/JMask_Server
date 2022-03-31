@@ -17,8 +17,6 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("JMask/Login")
 public class Login_Controller {
     @Autowired
-    Login_Mapper login_mapper;
-    @Autowired
     User_Mapper user_mapper;
 
     /**

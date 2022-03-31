@@ -44,7 +44,7 @@ public class Login_Web_Controller {
      * @return 用户token信息
      */
     @RequestMapping("/WebLogin")
-    public Result login(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password) throws UnsupportedEncodingException {
+    public Result login(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password) {
 //        System.out.println(username);
 //        System.out.println(password);
         if (
@@ -69,8 +69,14 @@ public class Login_Web_Controller {
 
 //        System.out.println(user.getPassword());
 //        System.out.println(Base64Util.encode(HmacSHA512_Util.HmacSHA512(password, createTime)));
-
-        if (user.getPassword().equals(Base64Util.encode(HmacSHA512_Util.HmacSHA512(password, createTime)))) {
+        String encodePassWord;
+        try {
+            encodePassWord = Base64Util.encode(HmacSHA512_Util.HmacSHA512(password, createTime));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return Result.getFail();
+        }
+        if (user.getPassword().equals(encodePassWord)) {
             Map<String, String> payload = new HashMap<>();
             Map<String, String> data = new HashMap<>();
 

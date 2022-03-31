@@ -30,7 +30,7 @@ public class Registration_Controller {
             @RequestParam("userName") String userName,
             @RequestParam("password") String password,
             @RequestParam("time") String time
-    ) throws UnsupportedEncodingException {
+    ) {
         SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String createTime = timeFormat.format(new Date(Long.parseLong(Base64Util.decode(time)) * 1000)); // 时间戳转换日期
 //        System.out.println(Base64Util.decode(userName));
@@ -50,9 +50,8 @@ public class Registration_Controller {
 
     @RequestMapping(method = {RequestMethod.POST}, value = "canUseUserName")
     public boolean canUseUserName(@RequestParam("userName") String userName) {
-        System.out.println(userName);
+//        System.out.println(userName);
         String queryUserName = Base64Util.decode(userName);
-        System.out.println();
         boolean result = "".equals(queryUserName) ? false : userMapper.countUsersByName(queryUserName) == 0 ? true : false;
         return result;
     }

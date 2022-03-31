@@ -18,7 +18,7 @@ spring:
   datasource:
     username: root
     password: Ikarosu1
-    url: jdbc:mysql://www.Jian-Internet.com:3306/JianMask?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://www.Jian-Internet.com:3306/JianMask?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       minimum-idle: 3

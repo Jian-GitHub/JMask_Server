@@ -27,13 +27,12 @@ public class Img_Controller {
      * @param userName 用户名
      * @param imgData  图片数据
      * @return 返回处理后的图片Base64编码数据
-     * @throws UnsupportedEncodingException 抛出处理过程中的异常
      */
     @RequestMapping(
 //            method = {RequestMethod.POST},
             value = "/dealRTM"
     )
-    public String dealRTMClient(@RequestParam(value = "userName", required = false) String userName, @RequestParam("imgData") String imgData) throws UnsupportedEncodingException {
+    public String dealRTMClient(@RequestParam(value = "userName", required = false) String userName, @RequestParam("imgData") String imgData) {
 //      将图片Base64数据传至Python内处理，接收处理后的数据。
         try {
             HashMap<String, String> hashMap = new HashMap<>();
@@ -62,13 +61,12 @@ public class Img_Controller {
      * @param imgData  图片数据
      * @param imgType  图片类型(文件后缀)
      * @return 返回处理后的图片Base64编码数据
-     * @throws UnsupportedEncodingException 抛出处理过程中的异常
      */
     @RequestMapping(
 //            method = {RequestMethod.POST},
             value = "/dealImg"
     )
-    public String dealImgClient(@RequestParam("userName") String userName, @RequestParam("imgData") String imgData, @RequestParam("imgType") String imgType) throws UnsupportedEncodingException {
+    public String dealImgClient(@RequestParam("userName") String userName, @RequestParam("imgData") String imgData, @RequestParam("imgType") String imgType) {
         File directory = new File("");
         String imgDir = directory.getAbsolutePath() + "/AppData/" + userName;
 //        imgData = Base64Util.decode(imgData);
@@ -114,15 +112,15 @@ public class Img_Controller {
         String imageData = "";
         String fileName = file.getOriginalFilename();
         int index = Objects.requireNonNull(file.getOriginalFilename()).indexOf(".");
-        if("".equals(fileName) || fileName == null || index <= 0){
+        if ("".equals(fileName) || fileName == null || index <= 0) {
             return imageData;
         }
         String suffixName = Objects.requireNonNull(fileName).substring(index, fileName.length());
-        if(
+        if (
                 !".jpg".equalsIgnoreCase(suffixName) &&
-                !".jpeg".equalsIgnoreCase(suffixName) &&
-                !".png".equalsIgnoreCase(suffixName)
-        ){//不为图片类型则返回空字符串
+                        !".jpeg".equalsIgnoreCase(suffixName) &&
+                        !".png".equalsIgnoreCase(suffixName)
+        ) {//不为图片类型则返回空字符串
             return "";
         }
         suffixName = ".jpg";
