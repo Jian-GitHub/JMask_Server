@@ -21,7 +21,6 @@ public class JsonUtils {
     public static final int TYPE_GSON = 1;
 
     /**
-     * <pre>
      * json转化为List<目标类>
      *
      * @param obj 待转化对象
@@ -52,7 +51,7 @@ public class JsonUtils {
     }
 
     /**
-     * <pre>
+     *
      * 对象转化为json字符串
      *
      * @param obj 待转化对象
@@ -64,7 +63,7 @@ public class JsonUtils {
     }
 
     /**
-     * <pre>
+     *
      * 对象转化为json字符串
      *
      * @param obj 待转化对象
@@ -116,7 +115,7 @@ public class JsonUtils {
     }
 
     /**
-     * <pre>
+     *
      * 解析json字符串中某路径的值
      *
      * @param json
@@ -134,7 +133,7 @@ public class JsonUtils {
     }
 
     /**
-     * <pre>
+     *
      * json字符串解析为对象
      *
      * @param json 代表一个对象的Json字符串
@@ -146,7 +145,7 @@ public class JsonUtils {
     }
 
     /**
-     * <pre>
+     *
      * json字符串解析为对象
      *
      * @param json json字符串
@@ -180,7 +179,7 @@ public class JsonUtils {
     }
 
     /**
-     * <pre>
+     *
      * 从json字符串中解析出一个对象的集合，被解析字符串要求是合法的集合类型
      * （形如:["k1":"v1","k2":"v2",..."kn":"vn"]）
      *
@@ -193,7 +192,7 @@ public class JsonUtils {
     }
 
     /**
-     * <pre>
+     *
      * 从json字符串中按照路径寻找，并解析出一个对象的集合，例如：
      * 类Person有一个属性name，要从以下json中解析出其集合：
      * {

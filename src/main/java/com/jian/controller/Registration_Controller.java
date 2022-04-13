@@ -4,6 +4,13 @@ import com.jian.entity.Result;
 import com.jian.mapper.User_Mapper;
 import com.jian.untils.Base64Util;
 import com.jian.untils.Uuid;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,11 +28,22 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("JMask/Registration")
+@Tag(name = "注册相关")
 public class Registration_Controller {
     @Autowired
     User_Mapper userMapper;
 
     @RequestMapping(method = {RequestMethod.POST}, value = "registration")
+    @Operation(summary = "用户注册")
+    @Parameters({
+            @Parameter(name = "userName", description = "用户名", required = true),
+            @Parameter(name = "password", description = "密码", required = true),
+            @Parameter(name = "time", description = "注册时间", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
     public Result registration(
             @RequestParam("userName") String userName,
             @RequestParam("password") String password,
@@ -49,6 +67,10 @@ public class Registration_Controller {
     }
 
     @RequestMapping(method = {RequestMethod.POST}, value = "canUseUserName")
+    @Operation(summary = "查询用户名是否可用")
+    @Parameters({
+            @Parameter(name = "userName", description = "用户名", required = true)
+    })
     public boolean canUseUserName(@RequestParam("userName") String userName) {
 //        System.out.println(userName);
         String queryUserName = Base64Util.decode(userName);

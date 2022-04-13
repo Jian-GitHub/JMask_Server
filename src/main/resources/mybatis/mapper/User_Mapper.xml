@@ -33,6 +33,7 @@
 
     <delete id="removeAccount" parameterType="String">
         DELETE FROM `user` WHERE (`id` = #{id});
+        DELETE FROM `log` WHERE (`userID` = #{id});
         DELETE FROM `avatar` WHERE (`userID` = #{id});
     </delete>
 
@@ -43,4 +44,15 @@
     <update id="updateHasAvatar">
         UPDATE `user` SET `hasAvatar` = #{hasAvatar} WHERE (`id` = #{id});
     </update>
+
+    <insert id="addUserLog">
+        INSERT INTO `JianMask`.`log` (`userID`, `imgName`) VALUES (#{id}, #{imgName});
+    </insert>
+
+    <select id="selectUserLog" resultType="log">
+        SELECT * FROM `log` WHERE (`userID` = #{id}) LIMIT #{startIndex},#{endIndex};
+    </select>
+    <select id="countUserLog" resultType="int">
+        SELECT count(id) FROM `log` WHERE (`userID` = #{id});
+    </select>
 </mapper>

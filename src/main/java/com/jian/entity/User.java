@@ -1,6 +1,7 @@
 package com.jian.entity;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  */
 
 @Data
+@Schema
 public class User {
     private String id;
     private String userName;//用户名称

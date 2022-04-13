@@ -1,0 +1,24 @@
+
+E
+java:S3740/"/Provide the parametrized type for this generic.(ﬂåÜ•
+t
+java:S1488M"^Immediately return this expression instead of assigning it to the temporary variable "result".(¨ç≠¥
+b	java:S101 "MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÄÅòﬁ
+P
+java:S1710&":Remove the 'Parameters' wrapper from this annotation group(‡·Ò®
+P
+java:S1710G":Remove the 'Parameters' wrapper from this annotation group(‡·Ò®
+`
+java:S4488$"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(æœö
+Q	java:S1256"<This block of commented-out lines of code should be removed.(Ç™õò
+e
+java:S4488E"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(“ê÷‰˚ˇˇˇˇ
+V	java:S125K"<This block of commented-out lines of code should be removed.(˙µ∆¯ˇˇˇˇˇ
+=
+java:S1125M"'Remove the unnecessary boolean literal.(¨ç≠¥
+Z
+java:S3358M"DExtract this nested ternary operation into an independent statement.(¨ç≠¥
+>
+java:S1125M"(Remove the unnecessary boolean literals.(¨ç≠¥
+W
+java:S1128"ARemove this unused import 'java.io.UnsupportedEncodingException'.(√µÖì

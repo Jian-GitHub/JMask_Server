@@ -1,5 +1,6 @@
 package com.jian.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -8,6 +9,7 @@ import lombok.Data;
  */
 
 @Data
+@Schema
 public class Login {
     private String password;//密码
     private String createDate;//创建时间

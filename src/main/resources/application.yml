@@ -2,12 +2,12 @@ server:
   port: 8081
   httpPort: 8082
   ssl:
-      key-store: server.keystore
-#         key-alias: jmask
-      enabled: true
-      key-store-password: Ikarosu
-#         key-store-password: Ikarosu
-      key-store-type: JKS
+    key-store: server.keystore
+    #         key-alias: jmask
+    enabled: true
+    key-store-password: Ikarosu
+    #         key-store-password: Ikarosu
+    key-store-type: JKS
   mvc:
     view:
       prefix: /
@@ -16,9 +16,9 @@ server:
 
 spring:
   datasource:
-    username: yourUserName
-    password: yourPassWord
-    url: jdbc:mysql://yourURL
+    username: root
+    password: Ikarosu1
+    url: jdbc:mysql://www.Jian-Internet.com:3306/JianMask?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       minimum-idle: 3
@@ -28,3 +28,6 @@ spring:
 mybatis:
   type-aliases-package: com.jian.entity
   mapper-locations: classpath:mybatis/mapper/*.xml
+springdoc:
+  swagger-ui:
+    path: JMask-swagger-ui

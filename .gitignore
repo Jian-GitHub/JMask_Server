@@ -1,0 +1,7 @@
+
+.DS_Store
+.idea/.DS_Store
+AppData/.DS_Store
+target/.DS_Store
+target/classes/.DS_Store
+target/classes/application.yml

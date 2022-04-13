@@ -1,5 +1,6 @@
 package com.jian.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * @Version 1
  */
 @Data
+@Schema
 public class Avatar {
     private String userID;//用户ID
     private String avatarURL;//用户头像URL

@@ -1,0 +1,6 @@
+
+P	java:S125,"<This block of commented-out lines of code should be removed.(×Çß~
+T
+java:S1874<"?Remove this use of "WebMvcConfigurerAdapter"; it is deprecated.(¯¤¢H
+P
+java:S1161>":Add the "@Override" annotation above this method signature(‹ÃÇê

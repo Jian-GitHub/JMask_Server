@@ -3,7 +3,15 @@ package com.jian.controller;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.jian.entity.Result;
 import com.jian.untils.JWTUtils;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +24,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("JMask")
+@Tag(name = "Token相关")
 public class Token_Controller {
-    @RequestMapping("/checkToken")
-    public Result checkToken(String token){
+    @RequestMapping(method = RequestMethod.POST, value = "/checkToken")
+    @Operation(summary = "校验Token信息是否有效")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
+    public Result checkToken(@RequestParam(value = "token") String token){
         DecodedJWT verify = null;
 //        System.out.println(token);
         if (token == null){

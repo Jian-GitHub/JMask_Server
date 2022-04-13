@@ -14,7 +14,7 @@ public class JWTUtils {
     /**
      * 生产token
      */
-    public static String getToken(Map<String, String> map) {
+    public static String getToken(Map<String, String> map,int time) {
         JWTCreator.Builder builder = JWT.create();
 
         //payload
@@ -23,7 +23,7 @@ public class JWTUtils {
         });
 
         Calendar instance = Calendar.getInstance();
-        instance.add(Calendar.DATE, 7); //默认7天过期
+        instance.add(Calendar.DATE, time); //默认7天过期
 
         builder.withExpiresAt(instance.getTime());//指定令牌的过期时间
         String token = builder.sign(Algorithm.HMAC256(SECRET));//签名
@@ -38,12 +38,4 @@ public class JWTUtils {
         DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256(SECRET)).build().verify(token);
         return decodedJWT;
     }
-
-//    /**
-//     * 获取token中的 payload
-//     */
-//    public static DecodedJWT getToken(String token) {
-//        DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256(SECRET)).build().verify(token);
-//        return decodedJWT;
-//    }
 }

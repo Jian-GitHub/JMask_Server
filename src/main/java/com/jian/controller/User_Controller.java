@@ -1,6 +1,7 @@
 package com.jian.controller;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.jian.entity.Log;
 import com.jian.entity.Result;
 import com.jian.entity.User;
 import com.jian.mapper.Avatar_Mapper;
@@ -9,7 +10,13 @@ import com.jian.untils.Base64Util;
 import com.jian.untils.HmacSHA512_Util;
 import com.jian.untils.JWTUtils;
 import com.jian.untils.JsonUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +33,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("JMask/User")
+@Tag(name = "用户相关")
 public class User_Controller {
     final
     User_Mapper userMapper;
@@ -54,7 +62,8 @@ public class User_Controller {
         }
     }
 
-    @RequestMapping("select")
+    @RequestMapping(method = RequestMethod.POST, value = "select")
+    @Operation(summary = "获取全部用户")
     public List<User> selectUsers() {
 //        System.out.println(userMapper.select());
         return userMapper.selectAllUsers();
@@ -68,6 +77,14 @@ public class User_Controller {
      * @return Result HmacSHA512加密的用户密码
      */
     @RequestMapping(method = {RequestMethod.POST}, value = "getPassWordByToken")
+    @Operation(summary = "通过Token获得用户密码")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
     public Result getPassWordByToken(@RequestParam(value = "token") String token) {
         DecodedJWT verify;
         Map<String, String> data = new HashMap<>();
@@ -110,6 +127,15 @@ public class User_Controller {
      * @return
      */
     @RequestMapping(method = {RequestMethod.POST}, value = "updateUserNameByToken")
+    @Operation(summary = "更新用户名")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true),
+            @Parameter(name = "newUserName", description = "新用户名", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
     public Result updateUserNameByToken(@RequestParam(value = "token") String token, @RequestParam(value = "newUserName") String newUserName) {
         DecodedJWT verify = checkToken(token);
         Map<String, String> data = new HashMap<>();
@@ -118,7 +144,6 @@ public class User_Controller {
             return Result.getFail().setData(data);
         }
         boolean result = userMapper.updateUserName(verify.getClaim("id").asString(), newUserName);
-//        System.out.println(result);
         if (result) {
             return Result.getSuccess();
         } else {
@@ -127,7 +152,16 @@ public class User_Controller {
     }
 
 
-    @RequestMapping("selectByUserID")
+    /**
+     * 通过ID查询用户
+     * @param ID 用户ID
+     * @return 用户类JSON Base64编码 字符串
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "selectByUserID")
+    @Operation(summary = "通过ID查询用户")
+    @Parameters({
+            @Parameter(name = "ID", description = "用户ID", required = true)
+    })
     public String selectByUserID(String ID) {
 //        System.out.println(userMapper.select());
         User user = userMapper.selectUserByID(ID);
@@ -140,7 +174,16 @@ public class User_Controller {
         return result;
     }
 
-    @RequestMapping("selectByUserName")
+    /**
+     * 通过用户名查询用户
+     * @param name 用户名
+     * @return 用户类
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "selectByUserName")
+    @Operation(summary = "通过用户名查询用户")
+    @Parameters({
+            @Parameter(name = "name", description = "用户名", required = true)
+    })
     public User selectByUserName(String name) {
 //        System.out.println(userMapper.select());
         return userMapper.selectUserByName(name);
@@ -154,9 +197,17 @@ public class User_Controller {
      * @return
      */
     @RequestMapping(method = {RequestMethod.POST}, value = "updateUserPassWord")
+    @Operation(summary = "更新用户密码")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true),
+            @Parameter(name = "newPassWord", description = "加密并Base64编码的新密码", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
     public Result updateUserPassWord(@RequestParam(value = "token") String token, @RequestParam(value = "newPassWord") String newPassWord) {
         Map<String, String> data = new HashMap<>();
-//        System.out.println(newPassWord);
         DecodedJWT verify = checkToken(token);
         if (verify == null) {
             data.put("error", "Token无效");
@@ -176,7 +227,21 @@ public class User_Controller {
     }
 
 
+    /**
+     * 通过Token获取用户信息 - id userName avatarURL
+     *
+     * @param token
+     * @return
+     */
     @RequestMapping(method = {RequestMethod.POST}, value = "getUserInfoByToken")
+    @Operation(summary = "通过token获取用户信息 - id userName avatarURL")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
     public Result getUserInfoByToken(@RequestParam(value = "token") String token) {
         Map<String, String> data = new HashMap<>();
         DecodedJWT verify = checkToken(token);
@@ -199,7 +264,54 @@ public class User_Controller {
         return Result.getSuccess().setData(data);
     }
 
+    /**
+     * 通过用户名获取用户信息 - id userName avatarURL
+     *
+     * @param userName
+     * @return
+     */
+    @RequestMapping(method = {RequestMethod.POST}, value = "getUserAvatarByUserName")
+    @Operation(summary = "通过用户名获取用户信息 - id userName avatarURL")
+    @Parameters({
+            @Parameter(name = "userName", description = "用户名的Base64编码", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
+    public Result getUserInfoByUserName(@RequestParam(value = "userName") String userName) {
+        Map<String, String> data = new HashMap<>();
+//        System.out.println(Base64Util.decode(userName));
+        User user = userMapper.selectUserByName(Base64Util.decode(userName));
+        if (user == null) {
+            data.put("error", "用户信息无效");
+            return Result.getFail().setData(data);
+        }
+        String avatarURL = avatarMapper.selectAvatarByUserID(user.getId());
+        if (avatarURL == null || "".equals(avatarURL)) {
+            avatarURL = "";
+        }
+        data.put("id", user.getId().toUpperCase());
+        data.put("avatarURL", avatarURL);
+        data.put("userName", user.getUserName());
+        return Result.getSuccess().setData(data);
+    }
+
+    /**
+     * 通过Token获取用户
+     *
+     * @param token
+     * @return
+     */
     @RequestMapping(method = {RequestMethod.POST}, value = "getUserIdByToken")
+    @Operation(summary = "通过token获取用户")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
     public Result getUserIdByToken(@RequestParam(value = "token") String token) {
         DecodedJWT verify = null;
 //        System.out.println(token);
@@ -220,8 +332,33 @@ public class User_Controller {
         return Result.getSuccess().setData(data);
     }
 
+    /**
+     * 注销用户
+     *
+     * @param token 用户token
+     * @param userName 用户名
+     * @param passWord 用户密码
+     * @param encodePassWord 加密后的密码
+     * @return
+     */
     @RequestMapping(method = {RequestMethod.POST}, value = "removeAccount")
-    public Result removeAccount(@RequestParam(value = "token") String token, @RequestParam(value = "userName") String userName, @RequestParam(value = "passWord") String passWord, @RequestParam(value = "encodePassWord") String encodePassWord) {
+    @Operation(summary = "注销账户")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true),
+            @Parameter(name = "userName", description = "用户名", required = true),
+            @Parameter(name = "passWord", description = "用户密码", required = true),
+            @Parameter(name = "encodePassWord", description = "加密后的密码", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
+    public Result removeAccount(
+            @RequestParam(value = "token") String token,
+            @RequestParam(value = "userName") String userName,
+            @RequestParam(value = "passWord") String passWord,
+            @RequestParam(value = "encodePassWord") String encodePassWord
+    ) {
         DecodedJWT verify = checkToken(token);
         HashMap<String, String> data = new HashMap<>();
         if (verify == null) {
@@ -262,6 +399,16 @@ public class User_Controller {
             data.put("error", "用户信息错误");
             return Result.getFail().setData(data);
         }
+        if (user.isHasAvatar()) {
+            String avatarURL = avatarMapper.selectAvatarByUserID(user.getId());
+            String[] avtarURLArray = avatarURL.split("/");
+            String avatarPath = "/www/wwwroot/resources.Jian-Internet.com/JMask/images/avatars/" + avtarURLArray[avtarURLArray.length - 1];
+//            System.out.println(avatarPath);
+            File file = new File(avatarPath);
+            if (!file.isDirectory()) {
+                file.delete();
+            }
+        }
         boolean result = userMapper.removeAccount(user.getId());
         if (result) {
             return Result.getSuccess();
@@ -270,7 +417,7 @@ public class User_Controller {
     }
 
     /**
-     * @param file 用户上传的头像(图片)
+     * @param file  用户上传的头像(图片)文件
      * @param token 用户token
      * @return
      */
@@ -278,6 +425,15 @@ public class User_Controller {
             method = {RequestMethod.POST},
             value = "/uploadAvatar"
     )
+    @Operation(summary = "更新用户头像")
+    @Parameters({
+            @Parameter(name = "file", description = "图片文件", required = true),
+            @Parameter(name = "token", description = "用户token", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
     public Result uploadAvatar(@RequestParam("file") MultipartFile file, @RequestParam("token") String token) {
 //        System.out.println("OK");
 //        System.out.println(token);
@@ -334,9 +490,9 @@ public class User_Controller {
         try {
             out = new FileOutputStream(saveAvatarPath);
             out.write(file.getBytes());
-            if (userMapper.uploadAvatar(user.getId(), avatarURL) && userMapper.updateHasAvatar(user.getId(), true)){
+            if (userMapper.uploadAvatar(user.getId(), avatarURL) && userMapper.updateHasAvatar(user.getId(), true)) {
                 return Result.getSuccess();
-            }else {
+            } else {
                 data.put("error", "数据库错误");
                 return Result.getFail().setData(data);
             }
@@ -359,5 +515,152 @@ public class User_Controller {
             }
         }
     }
-}
 
+
+    /**
+     * @param avatarBase64  用户上传的头像(图片)Base64编码
+     * @param token 用户token
+     * @return
+     */
+    @RequestMapping(
+            method = {RequestMethod.POST},
+            value = "/uploadAvatarBase64"
+    )
+    @Operation(summary = "获取用户加密后的密码")
+    @Parameters({
+            @Parameter(name = "avatarBase64", description = "图片Base64编码", required = true),
+            @Parameter(name = "token", description = "用户token", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
+    public Result uploadAvatar(@RequestParam("avatarBase64") String avatarBase64, @RequestParam("token") String token) {
+//        System.out.println("OK");
+//        System.out.println(token);
+        DecodedJWT verify;
+        Map<String, String> data = new HashMap<>();
+        if (token == null) {
+            return Result.getFail();
+        }
+        try {
+            verify = JWTUtils.verify(token);
+        } catch (Exception e) {
+            data.put("error", "Token无效");
+            return Result.getFail().setData(data);
+        }
+        User user = userMapper.selectUserByID(verify.getClaim("id").asString());
+        if (user == null) {
+            return Result.getFail().setData("用户无效");
+        }
+        String saveAvatarURL = "/www/wwwroot/resources.Jian-Internet.com/JMask/images/avatars/" + user.getId() + ".jpg";
+        String avatarURL = "https://resources.jian-internet.com:50000/JMask/images/avatars/" + user.getId() + ".jpg";
+        if(Base64Util.StringToSaveImage(avatarBase64, saveAvatarURL)){
+            if (userMapper.uploadAvatar(user.getId(), avatarURL) && userMapper.updateHasAvatar(user.getId(), true)) {
+                return Result.getSuccess();
+            }
+        }
+        return Result.getFail();
+    }
+
+    /**
+     * 查询用户识别记录的单张图片
+     * @param token 用户token
+     * @param imgName 查询的图片
+     * @return 该图片的Base64编码
+     */
+    @RequestMapping(
+            method = {RequestMethod.POST},
+            value = "/getLogImgBase64"
+    )
+    @Operation(summary = "查询用户识别记录的单张图片")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true),
+            @Parameter(name = "imgName", description = "图片名", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
+    public Result getLogImgBase64(@RequestParam("token") String token, @RequestParam("imgName") String imgName){
+        DecodedJWT verify;
+        Map<String, String> data = new HashMap<>();
+        if (token == null) {
+            return Result.getFail();
+        }
+        try {
+            verify = JWTUtils.verify(token);
+        } catch (Exception e) {
+            data.put("error", "Token无效");
+            return Result.getFail().setData(data);
+        }
+        User user = userMapper.selectUserByID(verify.getClaim("id").asString());
+        if (user == null) {
+            data.put("error", "用户无效");
+            return Result.getFail().setData(data);
+        }
+        File directory = new File("");
+        String imgDir = directory.getAbsolutePath() + "/AppData/" + user.getId() + "/" + imgName;
+        File file = new File(imgDir);
+        if (!file.exists()) {
+            data.put("error", "图片不存在");
+            return Result.getFail().setData(data);
+        }
+        String imgDataBase64 = Base64Util.ImageToBase64String(imgDir);
+        data.put("imgDataBase64", imgDataBase64);
+        return Result.getSuccess().setData(data);
+    }
+
+    /**
+     * 通过token获取识别记录
+     * @param token 用户token
+     * @return
+     */
+    @RequestMapping(
+            method = {RequestMethod.POST},
+            value = "/getLog"
+    )
+    @Operation(summary = "获取识别记录")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true),
+            @Parameter(name = "startIndex", description = "识别记录开始序号", required = true)
+    })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "20000", description = "请求成功"),
+            @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
+    })
+    public Result getLog(@RequestParam("token") String token, @RequestParam("startIndex") String startIndex) {
+        DecodedJWT verify;
+        Map<String, Object> data = new HashMap<>();
+        if (token == null) {
+            return Result.getFail();
+        }
+        try {
+            verify = JWTUtils.verify(token);
+        } catch (Exception e) {
+            return Result.getFail().setData("Token无效");
+        }
+        User user = userMapper.selectUserByID(verify.getClaim("id").asString());
+        if (user == null) {
+            return Result.getFail().setData("用户无效");
+        }
+        List<Log> logList = userMapper.selectUserLog(user.getId(),Integer.valueOf(startIndex),5);
+        if (logList != null && logList.size() > 0) {
+            for (Log log : logList) {
+                File directory = new File("");
+                String imgDir = directory.getAbsolutePath() + "/AppData/" + user.getId() + "/" + log.getImgName();
+                File file = new File(imgDir);
+                if (!file.exists()) {
+                    log.setImgName("");
+                    continue;
+                }
+                String imgData = Base64Util.ImageToBase64String(imgDir);
+                log.setImgName(imgData);
+            }
+        }
+        data.put("logList", logList);
+        int logNum = userMapper.countUserLog(user.getId());
+        data.put("logNum", logNum);
+        return Result.getSuccess().setData(data);
+    }
+}

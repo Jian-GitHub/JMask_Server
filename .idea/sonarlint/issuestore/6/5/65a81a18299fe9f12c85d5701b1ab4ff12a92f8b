@@ -1,0 +1,20 @@
+
+o
+java:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(çÔËÃ
+C
+java:S1604h"(Make this anonymous inner class a lambda(ˆöÁ†ÿÿÿÿÿ
+w
+java:S1488Û"[Immediately return this expression instead of assigning it to the temporary variable "ret".(·„©óþÿÿÿÿ
+{
+java:S1488è"_Immediately return this expression instead of assigning it to the temporary variable "content".(÷œÐÿÿÿÿÿ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(ôÖ®¬ùÿÿÿÿ
+A
+java:S1168)"+Return an empty collection instead of null.(¥¹ï
+B
+java:S19051"'Remove this unnecessary cast to "List".(ÔÒãýÿÿÿÿ
+_
+java:S32521"DUse static access with "com.alibaba.fastjson.JSON" for "parseArray".(ÔÒãýÿÿÿÿ
+V	java:S125>"<This block of commented-out lines of code should be removed.(óÄêþÿÿÿÿ
+V	java:S125J"<This block of commented-out lines of code should be removed.(óÄêþÿÿÿÿ
+T	java:S106ƒ"9Replace this use of System.out or System.err by a logger.(‡±úÿÿÿÿ

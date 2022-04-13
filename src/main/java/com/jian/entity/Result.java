@@ -1,8 +1,10 @@
 package com.jian.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
+@Schema
 public class Result<T> {
     /**
      * 状态码

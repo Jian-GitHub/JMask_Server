@@ -1,0 +1,17 @@
+
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(–ð•Ÿþÿÿÿÿ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(–ð•Ÿþÿÿÿÿ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öŠö²
+_
+java:S2147#"DCombine this catch with the one at line 32, which has the same body.(“³ÛÝüÿÿÿÿ
+_
+java:S2147&"DCombine this catch with the one at line 32, which has the same body.(ÐÐ¹óúÿÿÿÿ
+T
+java:S4719">Replace charset name argument with StandardCharsets.ISO_8859_1(ãº‰€
+G
+java:S1135!"2Complete the task associated to this TODO comment.(ºØñ2
+G
+java:S1135$"2Complete the task associated to this TODO comment.(ºØñ2
+G
+java:S1135'"2Complete the task associated to this TODO comment.(ºØñ2
