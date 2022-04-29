@@ -26,12 +26,13 @@ import org.springframework.context.annotation.Configuration;
         info = @Info(
                 title = "JMask 人脸口罩识别应用系统接口 API 文档",
                 description = "系统API说明文档",
-                version = "0.0.5",
+                version = "0.5.0",
                 contact = @Contact(name = "Jian", email = "Jian@mail.Jian-Internet.com", url = "https://space.bilibili.com/21542929"),
                 license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html")
         ),
         servers = {
-                @Server(description = "JMask服务器", url = "https://JMask.Jian-Internet.com:8081"),
+//                @Server(description = "JMask服务器", url = "https://JMask.Jian-Internet.com:8081"),
+                @Server(description = "JMask服务器", url = "https://JMask.Jian-Internet.com/JMask/api"),
 //                @Server(description = "测试环境服务器", url = "https://localhost:8081")
         },
         security = @SecurityRequirement(name = "Oauth2"),

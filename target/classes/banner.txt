@@ -1,0 +1,19 @@
+
+${AnsiColor.BRIGHT_RED}    █████  ███  ███                      ██
+${AnsiColor.BRIGHT_RED}    █████  ███  ███                      ██
+${AnsiColor.BRIGHT_YELLOW}       ██  ███▒▒███                      ██                 ${AnsiColor.BLUE}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣴⣶⣶⣶⣶⣶⠶⣶⣤⣤⣀⠀⠀⠀
+${AnsiColor.BRIGHT_YELLOW}       ██  ███▓▓███   ▒████▓    ▒█████░  ██  ▓██▒           ${AnsiColor.BLUE}⠀⠀⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣿⠁⠀⢀⠈⢿⢀⣀⠀⠹⣿⣿⣿⣦⣄⠀⠀⠀
+${AnsiColor.BRIGHT_GREEN}       ██  ██▓██▓██   ██████▓  ████████  ██ ▓██▒            ${AnsiColor.BLUE}⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⠿⠀⠀⣟⡇⢘⣾⣽⠀⠀⡏⠉⠙⢛⣿⣷⡖⠀
+${AnsiColor.BRIGHT_GREEN}       ██  ██▒██▒██   █▒  ▒██  ██▒  ░▒█  ██▒██▒             ${AnsiColor.BLUE}⠀⠀⠀⠀⠀⣾⣿⣿⡿⠿⠷⠶⠤⠙⠒⠀⠒⢻⣿⣿⡷⠋⠀⠴⠞⠋⠁⢙⣿⣄
+${AnsiColor.BRIGHT_CYAN}       ██  ██░██░██    ▒█████  █████▓░   ████▓              ${AnsiColor.BLUE}⠀⠀⠀⠀⢸⣿⣿⣯⣤⣤⣤⣤⣤⡄⠀⠀⠀⠀⠉⢹⡄⠀⠀⠀⠛⠛⠋⠉⠹⡇
+${AnsiColor.BRIGHT_CYAN}       ██  ██ ██ ██  ░███████  ░██████▒  █████              ${AnsiColor.BLUE}⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⣀⣠⣤⣤⣤⣤⣤⣤⣤⣼⣇⣀⣀⣀⣛⣛⣒⣲⢾⡷
+${AnsiColor.BLUE}       ██  ██    ██  ██▓░  ██     ░▒▓██  ██░███             ${AnsiColor.BLUE}⢀⠤⠒⠒⢼⣿⣿⠶⠞⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⣼⠃
+${AnsiColor.BLUE} █▒   ▒██  ██    ██  ██▒  ███  █▒░  ▒██  ██  ██▒            ${AnsiColor.BLUE}⢮⠀⠀⠀⠀⣿⣿⣆⠀⠀⠻⣿⡿⠛⠉⠉⠁⠀⠉⠉⠛⠿⣿⣿⠟⠁⠀⣼⠃⠀
+${AnsiColor.MAGENTA} ███████▓  ██    ██  ████████  ████████  ██  ▒██            ${AnsiColor.BLUE}⠈⠓⠶⣶⣾⣿⣿⣿⣧⡀⠀⠈⠒⢤⣀⣀⡀⠀⠀⣀⣀⡠⠚⠁⠀⢀⡼⠃⠀
+${AnsiColor.MAGENTA} ░█████▒   ██    ██   ▓███░██  ░▓████▓   ██   ███           ${AnsiColor.BLUE}⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣷⣤⣤⣤⣤⣭⣭⣭⣭⣭⣥⣤⣤⣤⣴⣟⠁
+
+${AnsiColor.GREEN}- Spring Boot: ${spring-boot.version}
+${AnsiColor.GREEN}- Author: Jian
+${AnsiColor.GREEN}- Email: Jian@mail.Jian-Internet.com
+${AnsiColor.GREEN}- Website: https://JMask.Jian-Internet.com
+${AnsiColor.WHITE}
