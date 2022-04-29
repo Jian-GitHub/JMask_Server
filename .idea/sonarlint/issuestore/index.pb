@@ -17,8 +17,6 @@ M
 src/main/resources/banner.txt,e/f/efc52e6af802f9b802ffaae1e093e328ff8a2c20
 a
 1src/main/java/com/jian/untils/HttpClientUtil.java,7/0/70739c116b2700f3f6486ae2393bbe7854afa29d
-b
-2src/main/resources/mybatis/mapper/JMask_Mapper.xml,e/9/e9964485ceb2cf4daea94a1c3ff55b453bf9d621
 Y
 )src/main/java/com/jian/entity/Avatar.java,6/e/6ef9ea178a799f94da5529cef5a28a80d91a228a
 _
@@ -27,18 +25,12 @@ _
 /src/main/java/com/jian/mapper/JMask_Mapper.java,2/a/2a58defa41daf28652d38044e5e039fc713b7fcf
 V
 &src/main/java/com/jian/entity/Log.java,f/9/f99e7c6135fe170e908d30544d4acb77f1cc8a6d
-^
-.src/main/java/com/jian/mapper/User_Mapper.java,2/3/238163288ee85e96d8c70782c1b9c36fff28a5f5
 >
 .gitattributes,2/4/24139dae656713ba861751fb2c2ac38839349a7a
 ;
 SECURITY.md,7/c/7c875fef54268bc433a7fc46aa5fd6e96d58f32f
-R
-"src/test/java/com/jian/MYTEST.java,6/7/67286ef516920aae4ca7dbe0489c1975535c17d3
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-a
-1src/main/resources/mybatis/mapper/User_Mapper.xml,6/7/67f632d5363d6d5b5743fdff812a221d89fcccc6
 X
 (src/main/java/com/jian/entity/Login.java,8/b/8b9d7d923001f07218a729bb0ec3e96948fa010b
 n
@@ -53,7 +45,21 @@ _
 0src/main/java/com/jian/entity/CompareAppWeb.java,5/8/58ab279012ad7238e56bb1d21329d27901991a41
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-W
-'src/main/java/com/jian/Application.java,b/7/b7979d090a1c0d3ba1caf68f034b058544c96932
+g
+7src/main/java/com/jian/configuration/SwaggerConfig.java,9/1/91e24fe54189d0526c778cb66b14549d795ef123
+g
+7src/main/java/com/jian/controller/Token_Controller.java,6/8/6884d64db397d87cf7ab92e4af600836944ffa8a
+R
+"src/test/java/com/jian/MYTEST.java,6/7/67286ef516920aae4ca7dbe0489c1975535c17d3
+[
++src/main/java/com/jian/untils/JWTUtils.java,a/e/ae70a6c2ef36be2c73559d039069e2480342dbc3
+^
+.src/main/java/com/jian/mapper/User_Mapper.java,2/3/238163288ee85e96d8c70782c1b9c36fff28a5f5
 f
 6src/main/java/com/jian/controller/User_Controller.java,a/e/aeb37af8a6f4919dca9e4cae4853b294ba1e7575
+W
+'src/main/java/com/jian/Application.java,b/7/b7979d090a1c0d3ba1caf68f034b058544c96932
+e
+5src/main/java/com/jian/controller/Img_Controller.java,3/b/3ba99b15ebee544566454c0e80a95c48ccb4f50a
+g
+7src/main/java/com/jian/controller/Login_Controller.java,0/e/0e792f59191d332a3647546514a5ff4d699ae5fc

@@ -133,7 +133,7 @@ public class Img_Controller {
         //开始处理
 
         String imgName = System.currentTimeMillis() / 1000 + "." + imgType;
-        imgDir += "/" + imgName;
+        imgDir += File.separator + imgName;
 
         //存储图片
         ImgUtil.GenerateImage(imgData, imgDir);
@@ -169,18 +169,15 @@ public class Img_Controller {
             @Parameter(name = "file", description = "上传的图片文件", required = true),
             @Parameter(name = "token", description = "图片数据的Base64编码", required = false)
     })
-    public Result dealImgWeb(@RequestParam("file") MultipartFile file, @RequestParam(value = "token", required = false) String token) {
-//        System.out.println(token == null);
-//        System.out.println(token);
-//        System.out.println("".equals(token));
-//        System.out.println(token);
+    public Result<Map<String, String>> dealImgWeb(@RequestParam("file") MultipartFile file, @RequestParam(value = "token", required = false) String token) {
         boolean isLoginUser = false;
         User user = null;
-        String imageData = "";
+        String imageData;
         Map<String, String> resultData = new HashMap<>(16);
 
+
         String fileName = file.getOriginalFilename();
-        int index = Objects.requireNonNull(file.getOriginalFilename()).indexOf(".");
+        int index = Objects.requireNonNull(file.getOriginalFilename()).lastIndexOf(".");
         if ("".equals(fileName) || fileName == null || index <= 0) {
             resultData.put("error", "文件为空");
             return Result.getFail().setData(resultData);
@@ -226,8 +223,8 @@ public class Img_Controller {
         }
 
         FileOutputStream out = null;
+        filePath = imgDir + File.separator + imgName + suffixName;
         try {
-            filePath = imgDir + "/" + imgName + suffixName;
             out = new FileOutputStream(filePath);
             out.write(file.getBytes());
             String imgData = Base64Util.ImageToBase64String(filePath);

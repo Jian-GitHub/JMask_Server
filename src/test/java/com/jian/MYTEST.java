@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class MYTEST {
 
     @Test
     public void test(){
+        System.out.println(File.separator);
 //        System.out.println(System.currentTimeMillis());
 //        for (CompareAppWeb compareAppWeb : compareAppWeb_mapper.selectCompareAppWebList()) {
 //            System.out.println(compareAppWeb.toString());

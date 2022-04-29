@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,8 +30,12 @@ import java.util.Map;
 @RequestMapping("JMask")
 @Tag(name = "登录相关")
 public class Login_Controller {
-    @Autowired
-    User_Mapper user_mapper;
+    final
+    User_Mapper userMapper;
+
+    public Login_Controller(User_Mapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     /**
      * 传入用户名，寻得并以Base64编码返回该用户信息
@@ -51,8 +54,7 @@ public class Login_Controller {
     public String login(@RequestParam("userName") String userName) {
         String result = "";
         try {
-//            Login login = login_mapper.selectPasswordByUserName(Base64Util.decode(userName));
-            User user = user_mapper.selectUserByName(Base64Util.decode(userName));
+            User user = userMapper.selectUserByName(Base64Util.decode(userName));
 
             if (user == null) {
                 return result;
@@ -84,22 +86,21 @@ public class Login_Controller {
             @ApiResponse(responseCode = "20000", description = "请求成功"),
             @ApiResponse(responseCode = "50008", description = "请求失败", content = @Content)
     })
-    public Result login(
+    public Result<Map<String, String>> login(
             @RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password,
             @RequestParam(value = "type", required = false) boolean isClient
     ) {
-//        System.out.println(username);
-//        System.out.println(password);
         if (
                 username == null || "".equals(username) ||
                         password == null || "".equals(password)
         ) {
             return Result.getFail();
         }
-        User user = user_mapper.selectUserByName(username);
+        User user = userMapper.selectUserByName(username);
         if (user == null) {
-            return Result.getFail();//.setData("用户不存在");
+            // 用户不存在
+            return Result.getFail();
         }
         SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date;
@@ -110,9 +111,6 @@ public class Login_Controller {
             return Result.getFail();
         }
         String createTime = String.valueOf(date.getTime() / 1000); // 时间戳转换日期
-
-//        System.out.println(user.getPassword());
-//        System.out.println(Base64Util.encode(HmacSHA512_Util.HmacSHA512(password, createTime)));
         String encodePassWord;
         try {
             encodePassWord = Base64Util.encode(HmacSHA512_Util.HmacSHA512(password, createTime));
@@ -132,6 +130,15 @@ public class Login_Controller {
             int time = isClient ? 365 : 7;
             String token = JWTUtils.getToken(payload, time);
             data.put("token", token);
+
+            // 更新用户最后登录时间
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formatStr =formatter.format(new Date());
+            userMapper.updateUserLoginDate(formatStr, user.getId());
+
+            // 更新用户登录状态
+            userMapper.updateUserLoginState(true, user.getId());
+
             return Result.getSuccess().setData(data);
         }
         return Result.getFail();

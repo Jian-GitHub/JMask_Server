@@ -1,114 +1,119 @@
 
 E
-java:S3740X"/Provide the parametrized type for this generic.(º¼‡
+java:S3740Y"/Provide the parametrized type for this generic.(º¼‡
 K
-java:S3740‹"/Provide the parametrized type for this generic.(‘Æ‹ğşÿÿÿÿ
+java:S3740Œ"/Provide the parametrized type for this generic.(‘Æ‹ğşÿÿÿÿ
 F
-java:S3740Ñ"/Provide the parametrized type for this generic.(”ğºº
+java:S3740Ò"/Provide the parametrized type for this generic.(”ğºº
 K
-java:S3740õ"/Provide the parametrized type for this generic.(—¨öØıÿÿÿÿ
+java:S3740ö"/Provide the parametrized type for this generic.(—¨öØıÿÿÿÿ
 F
-java:S3740š"/Provide the parametrized type for this generic.(¬îË¡
+java:S3740›"/Provide the parametrized type for this generic.(¬îË¡
 K
-java:S3740»"/Provide the parametrized type for this generic.(­Å¥úÿÿÿÿ
+java:S3740¼"/Provide the parametrized type for this generic.(­Å¥úÿÿÿÿ
 K
-java:S3740ä"/Provide the parametrized type for this generic.(—Ş¾òùÿÿÿÿ
+java:S3740å"/Provide the parametrized type for this generic.(—Ş¾òùÿÿÿÿ
 F
-java:S3740µ"/Provide the parametrized type for this generic.(–‘Ğ›
+java:S3740¶"/Provide the parametrized type for this generic.(–‘Ğ›
 F
-java:S3740š"/Provide the parametrized type for this generic.(­Œâî
+java:S3740›"/Provide the parametrized type for this generic.(­Œâî
 E
-java:S3740É"/Provide the parametrized type for this generic.(·è«c
+java:S3740Ê"/Provide the parametrized type for this generic.(·è«c
 K
-java:S3740ø"/Provide the parametrized type for this generic.(êµÍÚıÿÿÿÿ
+java:S3740ù"/Provide the parametrized type for this generic.(êµÍÚıÿÿÿÿ
 j
-java:S1192ö"SDefine a constant instead of duplicating this literal "ç”¨æˆ·ä¿¡æ¯é”™è¯¯" 3 times.(ÜÏãÖ
+java:S1192÷"SDefine a constant instead of duplicating this literal "ç”¨æˆ·ä¿¡æ¯é”™è¯¯" 3 times.(ÜÏãÖ
 ›
-java:S1192•"Define a constant instead of duplicating this literal "/www/wwwroot/resources.Jian-Internet.com/JMask/images/avatars/" 3 times.(½ö­üÿÿÿÿ
+java:S1192–"Define a constant instead of duplicating this literal "/www/wwwroot/resources.Jian-Internet.com/JMask/images/avatars/" 3 times.(½ö­üÿÿÿÿ
 j
-java:S1192Ú"SDefine a constant instead of duplicating this literal "ç”¨æˆ·ä¿¡æ¯æ— æ•ˆ" 5 times.(Ÿ–Ş÷
+java:S1192Û"SDefine a constant instead of duplicating this literal "ç”¨æˆ·ä¿¡æ¯æ— æ•ˆ" 5 times.(Ÿ–Ş÷
 b
-java:S1192\"GDefine a constant instead of duplicating this literal "error" 25 times.(î‹‘üÿÿÿÿ
+java:S1192]"GDefine a constant instead of duplicating this literal "error" 25 times.(î‹‘üÿÿÿÿ
 b
-java:S1192b"LDefine a constant instead of duplicating this literal "Tokenæ— æ•ˆ" 9 times.(°¬´
+java:S1192c"LDefine a constant instead of duplicating this literal "Tokenæ— æ•ˆ" 9 times.(°¬´
 F
-java:S1066ä"/Merge this if statement with the enclosing one.(ûÆÌ‰
+java:S1066å"/Merge this if statement with the enclosing one.(ûÆÌ‰
 K
-java:S1066¯"/Merge this if statement with the enclosing one.( ÍãÓúÿÿÿÿ
-g	java:S117¥"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉªÅ
-l	java:S117‡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šããÃüÿÿÿÿ
-g	java:S101%"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Î°¢˜üÿÿÿÿ
+java:S1066°"/Merge this if statement with the enclosing one.( ÍãÓúÿÿÿÿ
+g	java:S117¦"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉªÅ
+l	java:S117ˆ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šããÃüÿÿÿÿ
+g	java:S101&"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Î°¢˜üÿÿÿÿ
 P
-java:S1710Q":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710R":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710ƒ":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710„":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710¢":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710£":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710¸":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710¹":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710É":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710Ê":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710î":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710ï":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710“":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710”":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710´":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710µ":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710Ú":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710Û":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710­":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710®":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710’":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710“":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710Á":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710Â":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
 Q
-java:S1710ğ":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+java:S1710ñ":Remove the 'Parameters' wrapper from this annotation group(àáñ¨
+X
+java:S1710¥":Remove the 'Parameters' wrapper from this annotation group(àáñ¨8“Å¡ ‡0
 `
-java:S4488A"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‹ÅÎÄ
-V	java:S125D"<This block of commented-out lines of code should be removed.(†ñÁ–øÿÿÿÿ
+java:S4488B"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‹ÅÎÄ
+V	java:S125E"<This block of commented-out lines of code should be removed.(†ñÁ–øÿÿÿÿ
 _
-java:S4488O"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¢–åA
+java:S4488P"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¢–åA
 `
-java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‚¡¦d
+java:S4488‚"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‚¡¦d
 f
-java:S4488 "JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÂÏïùÿÿÿÿ
-W	java:S125¦"<This block of commented-out lines of code should be removed.(†ñÁ–øÿÿÿÿ
+java:S4488¡"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÂÏïùÿÿÿÿ
+W	java:S125§"<This block of commented-out lines of code should be removed.(†ñÁ–øÿÿÿÿ
 `
-java:S4488¶"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ãÇ¤2
-W	java:S125¼"<This block of commented-out lines of code should be removed.(†ñÁ–øÿÿÿÿ
+java:S4488·"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ãÇ¤2
+W	java:S125½"<This block of commented-out lines of code should be removed.(†ñÁ–øÿÿÿÿ
 f
-java:S4488Ç"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(”ÎÏ¸ÿÿÿÿÿ
+java:S4488È"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(”ÎÏ¸ÿÿÿÿÿ
 f
-java:S4488ì"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‡’†©ıÿÿÿÿ
+java:S4488í"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(‡’†©ıÿÿÿÿ
 a
-java:S4488‘"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ó÷€Â
-R	java:S125œ"<This block of commented-out lines of code should be removed.(‚ª›˜
+java:S4488’"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ó÷€Â
+R	java:S125"<This block of commented-out lines of code should be removed.(‚ª›˜
 f
-java:S4488²"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(«Ã˜¦ıÿÿÿÿ
-R	java:S125½"<This block of commented-out lines of code should be removed.(»ã‰ö
+java:S4488³"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(«Ã˜¦ıÿÿÿÿ
+R	java:S125¾"<This block of commented-out lines of code should be removed.(»ã‰ö
 a
-java:S4488Ø"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¦†¢¸
-W	java:S125–"<This block of commented-out lines of code should be removed.(åÊ¢ÿÿÿÿÿÿ
-V	java:S899™";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ
+java:S4488Ù"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¦†¢¸
+W	java:S125—"<This block of commented-out lines of code should be removed.(åÊ¢ÿÿÿÿÿÿ
+V	java:S899š";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ
 j
-java:S4042™"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ
+java:S4042š"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ
 i
-java:S3776µ"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(–‘Ğ›
+java:S3776¶"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(–‘Ğ›
 f
-java:S4488¨"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
-W	java:S125¶"<This block of commented-out lines of code should be removed.(ü¨½Èûÿÿÿÿ
-R	java:S125Î"<This block of commented-out lines of code should be removed.(©¡¥¼
-R	java:S125Ø"<This block of commented-out lines of code should be removed.(Ÿ¦¢Ë
-W	java:S125İ"<This block of commented-out lines of code should be removed.(š¤Õúÿÿÿÿ
+java:S4488©"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
+W	java:S125·"<This block of commented-out lines of code should be removed.(ü¨½Èûÿÿÿÿ
+R	java:S125Ï"<This block of commented-out lines of code should be removed.(©¡¥¼
+R	java:S125Ù"<This block of commented-out lines of code should be removed.(Ÿ¦¢Ë
+W	java:S125Ş"<This block of commented-out lines of code should be removed.(š¤Õúÿÿÿÿ
 F
-java:S2093ê"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+java:S2093ë"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
 f
-java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
-W	java:S125›"<This block of commented-out lines of code should be removed.(ü¨½Èûÿÿÿÿ
+java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
+W	java:S125œ"<This block of commented-out lines of code should be removed.(ü¨½Èûÿÿÿÿ
 f
-java:S4488¼"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
+java:S4488½"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
 f
-java:S4488ë"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
+java:S4488ì"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
 Z
-java:S1155ˆ">Use isEmpty() to check whether the collection is empty or not.(Î”Õ÷ûÿÿÿÿ
+java:S1155‰">Use isEmpty() to check whether the collection is empty or not.(Î”Õ÷ûÿÿÿÿ
+f
+java:S4488 "JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñ¦…©üÿÿÿÿ
+[	java:S106«"9Replace this use of System.out or System.err by a logger.(Âû¯Ğüÿÿÿÿ8ëÅ— ‡0

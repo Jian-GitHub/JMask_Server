@@ -52,7 +52,16 @@
     <select id="selectUserLog" resultType="log">
         SELECT * FROM `log` WHERE (`userID` = #{id}) LIMIT #{startIndex},#{endIndex};
     </select>
+
     <select id="countUserLog" resultType="int">
         SELECT count(id) FROM `log` WHERE (`userID` = #{id});
     </select>
+
+    <update id="updateUserLoginDate">
+        UPDATE `user` SET `lastDate` = #{lastDate} WHERE (`id` = #{id});
+    </update>
+
+    <update id="updateUserLoginState">
+        UPDATE `user` SET `onLine` = #{isOnline} WHERE (`id` = #{id});
+    </update>
 </mapper>

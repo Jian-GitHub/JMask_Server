@@ -120,4 +120,17 @@ public interface User_Mapper {
      * @return
      */
     int countUserLog(@Param("id") String id);
+
+    /**
+     * 更新用户最后登录时间
+     * @param lastDate 当前时间
+     */
+    void updateUserLoginDate(@Param("lastDate") String lastDate, @Param("id") String id);
+
+    /**
+     * 更新用户登录状态
+     * @param isOnline 用户是否登录
+     * @param id 用户id
+     */
+    void updateUserLoginState(@Param("isOnline") boolean isOnline, @Param("id") String id);
 }

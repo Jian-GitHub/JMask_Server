@@ -17,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -662,5 +663,34 @@ public class User_Controller {
         int logNum = userMapper.countUserLog(user.getId());
         data.put("logNum", logNum);
         return Result.getSuccess().setData(data);
+    }
+
+    /**
+     * 用户退出登录
+     * @param token 用户token信息
+     */
+    @RequestMapping(
+            method = {RequestMethod.POST},
+            value = "/logOut"
+    )
+    @Operation(summary = "用户退出登录")
+    @Parameters({
+            @Parameter(name = "token", description = "用户token", required = true)
+    })
+    @Async
+    public void logOut(@RequestParam("token") String token) {
+        if (token == null || "".equals(token)) {
+            System.out.println("null");
+            return ;
+        }
+        String userID = JWTUtils.verifyUserToken(token);
+        if (userID == null || "".equals(userID)) {
+            return ;
+        }
+        User user = userMapper.selectUserByID(userID);
+        if (user == null) {
+            return ;
+        }
+        userMapper.updateUserLoginState(false, userID);
     }
 }
