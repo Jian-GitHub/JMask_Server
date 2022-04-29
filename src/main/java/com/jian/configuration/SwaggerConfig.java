@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
         ),
         servers = {
 //                @Server(description = "JMask服务器", url = "https://JMask.Jian-Internet.com:8081"),
-                @Server(description = "JMask服务器", url = "https://JMask.Jian-Internet.com/JMask/api"),
+                @Server(description = "JMask服务器", url = "https://JMask.Jian-Internet.com/api/JMask"),
 //                @Server(description = "测试环境服务器", url = "https://localhost:8081")
         },
         security = @SecurityRequirement(name = "Oauth2"),
