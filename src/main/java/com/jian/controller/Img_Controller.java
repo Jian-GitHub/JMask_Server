@@ -12,12 +12,18 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import net.coobird.thumbnailator.Thumbnails;
+import org.im4java.core.ConvertCmd;
+import org.im4java.core.IM4JavaException;
+import org.im4java.core.IMOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +41,8 @@ import java.util.Objects;
 @Tag(name = "图片相关")
 public class Img_Controller {
 
+    private static String pythonServerURL = "http://127.0.0.1:5000/Mask";
+    
     final
     User_Mapper user_mapper;
 
@@ -45,7 +53,7 @@ public class Img_Controller {
     /**
      * @param userName 用户名
      * @param imgData  图片数据
-     * @return 返回处理后的图片Base64编码数据
+     * @return (客户端实时)返回处理后的图片Base64编码数据
      */
     @RequestMapping(
             method = {RequestMethod.POST},
@@ -62,7 +70,7 @@ public class Img_Controller {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("imgData", imgData);
             //向服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
-            String result_imgData = HttpClientUtil.doPost("http://127.0.0.1:5000/Mask", hashMap);
+            String result_imgData = HttpClientUtil.doPost(pythonServerURL, hashMap);
             if ("".equals(result_imgData) || result_imgData == null) {
                 return "";
             }
@@ -84,7 +92,7 @@ public class Img_Controller {
      * @param token   用户token
      * @param imgData 图片数据
      * @param imgType 图片类型(文件后缀)
-     * @return 返回处理后的图片Base64编码数据
+     * @return (客户端)返回处理后的图片Base64编码数据
      */
     @RequestMapping(
             method = {RequestMethod.POST},
@@ -143,7 +151,7 @@ public class Img_Controller {
         HashMap<String, String> hashMap = new HashMap<>();
         hashMap.put("imgData", imgData);
         //向服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
-        String result_imgData = HttpClientUtil.doPost("http://127.0.0.1:5000/Mask", hashMap);
+        String result_imgData = HttpClientUtil.doPost(pythonServerURL, hashMap);
         if ("".equals(result_imgData) || result_imgData == null) {
             return "";
         }
@@ -158,7 +166,7 @@ public class Img_Controller {
 
     /**
      * @param file 网页传入的文件(图片)
-     * @return 返回处理后的图片Base64编码数据
+     * @return (网页端)返回处理后的图片Base64编码数据
      */
     @RequestMapping(
             method = {RequestMethod.POST},
@@ -175,27 +183,29 @@ public class Img_Controller {
         String imageData;
         Map<String, String> resultData = new HashMap<>(16);
 
-
         String fileName = file.getOriginalFilename();
         int index = Objects.requireNonNull(file.getOriginalFilename()).lastIndexOf(".");
         if ("".equals(fileName) || fileName == null || index <= 0) {
             resultData.put("error", "文件为空");
+            System.gc();
             return Result.getFail().setData(resultData);
         }
         String suffixName = Objects.requireNonNull(fileName).substring(index, fileName.length());
         if (
                 !".jpg".equalsIgnoreCase(suffixName) &&
                         !".jpeg".equalsIgnoreCase(suffixName) &&
-                        !".png".equalsIgnoreCase(suffixName)
+                        !".png".equalsIgnoreCase(suffixName) &&
+                        !".heic".equalsIgnoreCase(suffixName)
         ) {//不为图片类型则返回空字符串
             resultData.put("error", "图片类型有误");
+            System.gc();
             return Result.getFail().setData(resultData);
         }
-        suffixName = ".jpg";
-
+//        suffixName = ".jpg";
 
         File directory = new File("");
-        String imgName = System.currentTimeMillis() / 1000 + Objects.requireNonNull(fileName).substring(0, index);
+        String imgName = System.currentTimeMillis() / 1000 + "_" + Objects.requireNonNull(fileName).substring(0, index);
+        fileName = null;
         String imgDir = directory.getAbsolutePath() + "/AppData/" + "Web/";
 
         //验证token
@@ -203,8 +213,10 @@ public class Img_Controller {
             try {
                 DecodedJWT verify = JWTUtils.verify(token);
                 user = user_mapper.selectUserByID(verify.getClaim("id").asString());
+                verify = null;
                 if (user != null) {
                     imgDir = directory.getAbsolutePath() + "/AppData/" + user.getId();
+                    directory = null;
                     imgName = String.valueOf(System.currentTimeMillis() / 1000);
                     isLoginUser = true;
                 }
@@ -218,33 +230,57 @@ public class Img_Controller {
         if (!targetFile.exists()) {
             if (!targetFile.mkdirs()) {
                 resultData.put("error", "文件处理失败");
+                System.gc();
                 return Result.getFail().setData(resultData);
             }
         }
 
         FileOutputStream out = null;
         filePath = imgDir + File.separator + imgName + suffixName;
+
         try {
+            // 待处理的图片数据
+            String imgData = null;
+            // 存储图片
             out = new FileOutputStream(filePath);
             out.write(file.getBytes());
-            String imgData = Base64Util.ImageToBase64String(filePath);
+
+            // 如果是heic文件，则进行转换
+            if (".heic".equalsIgnoreCase(suffixName)) {
+                suffixName = ".jpg";
+                String newImgFilePath = imgDir + File.separator + imgName + suffixName;
+                dealHeic(filePath, newImgFilePath);
+                filePath = newImgFilePath;
+                imgData = Base64Util.ImageToBase64String(filePath);
+                resultData.put("originImgData", imgData);
+            } else {
+                imgData = Base64Util.ImageToBase64String(filePath);
+            }
+            filePath = null;
+            imgDir = null;
 
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("imgData", imgData);
+            imgData = null;
             //向服务器传送用户名，图片类型，图片数据，接收处理后的图片数据Base64编码
-            imageData = HttpClientUtil.doPost("http://127.0.0.1:5000/Mask", hashMap);
+            imageData = HttpClientUtil.doPost(pythonServerURL, hashMap);
             //无法正确处理则返回空字符串
             if (imageData == null) {
                 resultData.put("error", "识别失败");
+                System.gc();
                 return Result.getFail().setData(resultData);
-            }else {
+            } else {
                 resultData.put("imageData", imageData);
+                imageData = null;
                 //是登录用户则写入记录
                 if (isLoginUser && user != null) {
                     user_mapper.addUserLog(user.getId(), imgName + suffixName);
+                    imgName = null;
+                    suffixName = null;
+                    user = null;
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (out != null) {
@@ -260,6 +296,30 @@ public class Img_Controller {
                 }
             }
         }
+        System.gc();
         return Result.getSuccess().setData(resultData);
+    }
+
+    /**
+     *
+     * @param heicPath heic图片文件路径
+     * @param newImgFilePath 目标图片文件路径
+     * @throws Exception
+     */
+    @Operation(summary = "处理heic图片 - 转为指定目标图片文件")
+    @Parameters({
+            @Parameter(name = "heicPath", description = "heic图片文件路径", required = true),
+            @Parameter(name = "newImgFilePath", description = "目标图片文件路径", required = true)
+    })
+    private void dealHeic(@RequestParam("heicPath") String heicPath, @RequestParam("newImgFilePath") String newImgFilePath) throws Exception {
+        ConvertCmd cmd = new ConvertCmd();
+        IMOperation op = new IMOperation();
+        op.addImage(heicPath);
+        op.addImage(newImgFilePath);
+        cmd.run(op);
+        File oldImgFile = new File(heicPath); //删除heic图片文件
+        if (oldImgFile.exists()) {
+            oldImgFile.delete();
+        }
     }
 }

@@ -403,7 +403,7 @@ public class User_Controller {
         if (user.isHasAvatar()) {
             String avatarURL = avatarMapper.selectAvatarByUserID(user.getId());
             String[] avtarURLArray = avatarURL.split("/");
-            String avatarPath = "/www/wwwroot/resources.Jian-Internet.com/JMask/images/avatars/" + avtarURLArray[avtarURLArray.length - 1];
+            String avatarPath = "/www/wwwroot/resources.jian-internet.com/JMask/images/avatars/" + avtarURLArray[avtarURLArray.length - 1];
 //            System.out.println(avatarPath);
             File file = new File(avatarPath);
             if (!file.isDirectory()) {
@@ -473,7 +473,7 @@ public class User_Controller {
 //        suffixName = ".jpg";
 
         String imgName = user.getId().toUpperCase() + suffixName;
-        String imgDir = "/www/wwwroot/resources.Jian-Internet.com/JMask/images/avatars/";
+        String imgDir = "/www/wwwroot/resources.jian-internet.com/JMask/images/avatars/";
         /*
         File directory = new File("");
         String imgDir = directory.getAbsolutePath() + "/AppData/";
@@ -554,7 +554,7 @@ public class User_Controller {
         if (user == null) {
             return Result.getFail().setData("用户无效");
         }
-        String saveAvatarURL = "/www/wwwroot/resources.Jian-Internet.com/JMask/images/avatars/" + user.getId() + ".jpg";
+        String saveAvatarURL = "/www/wwwroot/resources.jian-internet.com/JMask/images/avatars/" + user.getId() + ".jpg";
         String avatarURL = "https://resources.jian-internet.com:50000/JMask/images/avatars/" + user.getId() + ".jpg";
         if(Base64Util.StringToSaveImage(avatarBase64, saveAvatarURL)){
             if (userMapper.uploadAvatar(user.getId(), avatarURL) && userMapper.updateHasAvatar(user.getId(), true)) {
@@ -653,6 +653,7 @@ public class User_Controller {
                 File file = new File(imgDir);
                 if (!file.exists()) {
                     log.setImgName("");
+                    logList.remove(log);
                     continue;
                 }
                 String imgData = Base64Util.ImageToBase64String(imgDir);

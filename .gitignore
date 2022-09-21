@@ -31,3 +31,7 @@ target/classes/application.yml
 .idea/sonarlint/issuestore/a/e/aeb37af8a6f4919dca9e4cae4853b294ba1e7575
 .idea/sonarlint/issuestore/e/9/e9964485ceb2cf4daea94a1c3ff55b453bf9d621
 .idea/sonarlint/issuestore/index.pb
+.DS_Store
+.DS_Store
+.idea/.DS_Store
+.idea/encodings.xml
