@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Jian Qi
@@ -91,5 +93,36 @@ public class MYTEST {
 //        System.out.println(dateStr);
 //        jMaskAppInfo.setDate(jMaskAppInfo.getDate().split(" ")[0]);
 //        System.out.println(user_mapper.countUserLog("1f0af08b05e04220acba0abc7d2a2872"));
+    }
+
+    public static List<String> listFiles(String path) {
+        if (path == null) {
+            return new ArrayList();
+        }
+        ArrayList<String> list = new ArrayList<>();
+        for (File file : new File(path).listFiles()) {
+            //如果是文件夹
+            if (file.isDirectory()) {
+                if (file.getName().indexOf('.') != 0) {
+                    list.addAll(listFiles(file.getPath()));
+                }
+            } else {
+                if (file.getName().indexOf('.') != 0) {
+//					list.add(file.getName());
+                    //下面是带有路径的写法
+                    list.add(file.getPath().replaceAll("/Volumes/Windows/videos/doraemon","https://resources.jian-family.com:50000/movies/doraemon"));
+                }
+            }
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+        for (String file : listFiles("/Volumes/Windows/videos")) {
+            if (file.indexOf('.') == 0) {
+                continue;
+            }
+            System.out.println(file);
+        }
     }
 }

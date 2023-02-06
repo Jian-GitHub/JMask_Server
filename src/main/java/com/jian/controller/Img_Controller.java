@@ -314,6 +314,7 @@ public class Img_Controller {
     private void dealHeic(@RequestParam("heicPath") String heicPath, @RequestParam("newImgFilePath") String newImgFilePath) throws Exception {
         ConvertCmd cmd = new ConvertCmd();
         IMOperation op = new IMOperation();
+//        cmd.setSearchPath("/Users/jian/code/7.1.0-49_1");
         op.addImage(heicPath);
         op.addImage(newImgFilePath);
         cmd.run(op);
